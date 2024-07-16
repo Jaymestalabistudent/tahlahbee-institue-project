@@ -1,0 +1,215 @@
+/* General body styling */
+.main-body {
+    background: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  
+  /* Keyframes for fade-in animation */
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Section 1 styling */
+  .u-section-1 {
+    background-image: none;
+  }
+  
+  .u-section-1 .u-sheet-1 {
+    min-height: 100vh;
+  }
+  
+  .u-section-1 .u-text-1 {
+    font-weight: 700;
+    font-size: 6rem;
+    margin: 181px auto 0;
+  }
+  
+  .u-section-1 .u-group-1 {
+    width: 684px;
+    min-height: 255px;
+    height: auto;
+    --radius: 22px;
+    margin: 82px 228px 60px;
+  }
+  
+  .u-section-1 .u-container-layout-1 {
+    padding: 20px 17px 16px;
+  }
+  
+  .u-section-1 .u-text-2 {
+    margin: 23px 18px 0;
+  }
+  
+  .u-section-1 .u-text-3 {
+    width: 199px;
+    margin: -15px 226px 0;
+  }
+  
+  .u-section-1 .u-btn-1 {
+    background-image: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    --radius: 8px;
+    margin: 1px 0 0 auto;
+  }
+  
+  /* Media queries for responsiveness */
+  
+  /* For screens with max-width of 1199px */
+  @media (max-width: 1199px) {
+    .u-section-1 .u-text-1 {
+      font-size: 4.5rem;
+    }
+  
+    .u-section-1 .u-group-1 {
+      margin-left: 128px;
+      margin-right: 128px;
+      height: auto;
+    }
+  }
+  
+  /* For screens with max-width of 991px */
+  @media (max-width: 991px) {
+    .u-section-1 .u-group-1 {
+      margin-left: 18px;
+      margin-right: 18px;
+    }
+  }
+  
+  /* For screens with max-width of 767px */
+  @media (max-width: 767px) {
+    .u-section-1 .u-text-1 {
+      font-size: 3.75rem;
+    }
+  
+    .u-section-1 .u-group-1 {
+      width: 540px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  
+    .u-section-1 .u-container-layout-1 {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  
+    .u-section-1 .u-text-2 {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  
+    .u-section-1 .u-text-3 {
+      margin-right: 161px;
+      margin-left: 161px;
+    }
+  }
+  
+  /* For screens with max-width of 575px */
+  @media (max-width: 575px) {
+    .u-section-1 .u-text-1 {
+      font-size: 3rem;
+    }
+  
+    .u-section-1 .u-group-1 {
+      width: 340px;
+    }
+  
+    .u-section-1 .u-text-3 {
+      margin-right: 61px;
+      margin-left: 61px;
+    }
+  }
+  /* Css for the navbar logo and title */
+.navbar-logo {
+    height: 115px; /* Adjust the height as needed */
+    width: auto; /* Maintain aspect ratio */
+  }
+  
+  .navbar-title {
+    color: #ffffff; /* White color for the title */
+    font-size: 1.85rem; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the title bold */
+  }
+  .nav-link {
+      text-align: center !important;
+      font-weight: bold;  
+  }
+
+  /* Css for the main body  */
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+  .bg-steel {
+    background-color: #5f788a;
+  }
+  
+
+  .content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+  }
+  
+  .article-title {
+    color: #444444;
+  }
+  
+  a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+  .article-content {
+    white-space: pre-line;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+  }
+  
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+  .article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .account-heading {
+    font-size: 2.5rem;
+  }
