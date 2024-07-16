@@ -1,0 +1,39 @@
+{
+  "name": "tahlahbee-institute-project",
+  "version": "1.0.0",
+  "description": "base",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "jsdom": "^24.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-html-reporter": "^3.10.2",
+    "jest-junit-reporter": "^1.1.0"
+  },
+  "jest": {
+    "testResultsProcessor": "./node_modules/jest-junit-reporter",
+    "reporters": [
+      "default",
+      ["jest-html-reporter", {
+        "publicPath": "./html-report",
+        "filename": "report.html",
+        "openReport": true
+      }]
+    ]
+  },
+  "author": "the projects",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaymestalabistudent/tahlahbee-institute-project.git"
+  }
+}
+
