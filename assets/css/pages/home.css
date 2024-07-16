@@ -1,10 +1,25 @@
-
-.index-body {
-    background-image: url('../../img/backgrounds/indexbackground2.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+/* General body styling */
+.home-body {
+  background: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
+
+/* Keyframes for fade-in animation */
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Section 1 styling */
 .u-section-1 {
   background-image: none;
 }
@@ -48,6 +63,9 @@
   margin: 1px 0 0 auto;
 }
 
+/* Media queries for responsiveness */
+
+/* For screens with max-width of 1199px */
 @media (max-width: 1199px) {
   .u-section-1 .u-text-1 {
     font-size: 4.5rem;
@@ -60,6 +78,7 @@
   }
 }
 
+/* For screens with max-width of 991px */
 @media (max-width: 991px) {
   .u-section-1 .u-group-1 {
     margin-left: 18px;
@@ -67,6 +86,7 @@
   }
 }
 
+/* For screens with max-width of 767px */
 @media (max-width: 767px) {
   .u-section-1 .u-text-1 {
     font-size: 3.75rem;
@@ -94,6 +114,7 @@
   }
 }
 
+/* For screens with max-width of 575px */
 @media (max-width: 575px) {
   .u-section-1 .u-text-1 {
     font-size: 3rem;
@@ -107,6 +128,4 @@
     margin-right: 61px;
     margin-left: 61px;
   }
-}.intro-title {
-  font-size: 2em; /* This would make the font size twice as large as the body font size */
 }

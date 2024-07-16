@@ -121,76 +121,395 @@
       src="assets/js/uikit/uikit.js"
       defer=""
     ></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <!-- Navbar and footer stylesheet and script  -->
     <link rel="stylesheet" href="assets/css/navbarfooter/navbarfooter.css" />
+    <!--  -->
+    <!-- Preloader stylesheet and script  -->
+    <link rel="stylesheet" href="assets/css/preloaders/main-pre.css" />
+    <script src="assets/js/preloader/main-pre.js"></script>
+
+    <!--  -->
+    <!--  -->
+    <!-- Log script  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Log ip script  -->
+    <script src="assets/js/jquery/tahquery.js"></script>
+    <!--  -->
+    <!--  -->
     <!-- Page stylesheet and script  -->
     <link rel="stylesheet" href="assets/css/pages/home.css" />
-    <link rel="stylesheet" href="assets/css/preloaders/index-home.css" />
-
     <script src="assets/js/pages/home.js"></script>
-    <script src="assets/js/preloader/index-home.js"></script>
+    <link
+      rel="stylesheet"
+      href="assets/css/animation/Animated-Type-Heading-BS5.css"
+    />
+    <link rel="stylesheet" href="assets/css/responsive-blog-card-slider.css" />
+    <link rel="stylesheet" href="assets/css/Section-Title.css" />
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+    <!--   -->
+    <!--   -->
   </head>
+  <!-- Body -->
   <body
     data-path-to-root="./"
     data-include-products="false"
     class="u-body u-xl-mode home-body"
     data-lang="en"
   >
-    <!-- Navigation -->
-    <header
-      class="u-box-shadow u-clearfix u-grey-15 u-header u-header"
-      id="sec-1806"
-    >
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-        <div class="container">
-          <a class="navbar-brand d-flex align-items-center" href="#">
-            <img
-              src="assets/img/logo/logo.png"
-              alt="logo"
-              class="navbar-logo"
-            />
-            <span class="navbar-title ms-2">Tahlahbee Institute</span>
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="test1.html">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="test1.html">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="test1.html">Link</a>
-              </li>
-            </ul>
-          </div>
+    <div id="overlay" class="overlay">
+      <div class="animation-container">
+        <div class="line">
+          <span>T</span>
+          <span>a</span>
+          <span>h</span>
+          <span>l</span>
+          <span>a</span>
+          <span>h</span>
+          <span>b</span>
+          <span>e</span>
+          <span>e</span>
         </div>
-      </nav>
-    </header>
-    <!-- End of Navigation -->
-    <!-- Preloader -->
-    <div id="pageloader">
-      <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
+        <div class="line">
+          <span>I</span>
+          <span>n</span>
+          <span>s</span>
+          <span>t</span>
+          <span>i</span>
+          <span>t</span>
+          <span>u</span>
+          <span>t</span>
+          <span>e</span>
+        </div>
       </div>
     </div>
-    <!-- End of Preloader-->
+    <div id="main-content" class="main-content">
+      <!-- Navigation -->
+      <header
+        class="u-box-shadow u-clearfix u-grey-15 u-header u-header"
+        id="sec-1806"
+      >
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+          <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+              <img
+                src="assets/img/logo/logo.png"
+                alt="logo"
+                class="navbar-logo"
+              />
+              <span class="navbar-title ms-2 tracking-in-expand"
+                >Tahlahbee Institute</span
+              >
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="quicklinks.html"
+                    >Links</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="books.html">Books</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html">About</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <!-- End of Navigation -->
+
+      <!-- Main -->
+      <main>
+        <!-- Heading -->
+        <div class="caption v-middle text-center">
+          <h1 class="cd-headline clip">
+            <span class="blc">I'm a|</span>
+            <span class="cd-words-wrapper">
+              <b class="is-visible">Father!</b>
+              <b>Babydad.</b>
+              <b>Daddy.</b>
+              <b>Dad.</b>
+              <b>Pops.</b>
+            </span>
+          </h1>
+        </div>
+        <!-- Heading end -->
+        <!-- TODO : figure out how to transfer to css file -->
+        <div class="blog-slider" style="transform: scale(0.8)">
+          <div class="blog-slider__wrp swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="blog-slider__item swiper-slide">
+              <div class="blog-slider__img">
+                <dotlottie-player
+                  src="https://lottie.host/45c43462-0ea0-4117-99f3-7e33284a2e19/hkWOS6Su4B.json"
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                ></dotlottie-player>
+              </div>
+              <div class="blog-slider__content">
+                <span class="blog-slider__code"></span>
+                <div class="blog-slider__title">
+                  <p>Hi ..</p>
+                </div>
+                <div class="blog-slider__text">
+                  <p>
+                    Welcome to the Tahlahbee Institute, where innovation meets
+                    excellence. We are delighted to have you visit our online
+                    home
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="blog-slider__item swiper-slide">
+              <div class="blog-slider__img">
+                <dotlottie-player
+                  src="https://lottie.host/95c9ece1-3b11-46cf-b5e0-39b355bff6bf/wDvBGQaFZD.json"
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                ></dotlottie-player>
+              </div>
+              <div class="blog-slider__content">
+                <span class="blog-slider__code"></span>
+                <div class="blog-slider__title">
+                  <p>What We Believe</p>
+                </div>
+                <div class="blog-slider__text">
+                  <p>
+                    The Tahlahbee Institute emphasizes the benefits of improving
+                    the connection between child and father at any stage of
+                    development.
+                  </p>
+                </div>
+                <a class="blog-slider__button" href="#modal-center-1" uk-toggle
+                  >READ MORE</a
+                >
+                <div id="modal-center-1" class="uk-flex-top" uk-modal>
+                  <div
+                    class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+                  >
+                    <button
+                      title="click here"
+                      class="uk-modal-close-default"
+                      type="button"
+                      uk-close
+                    ></button>
+                    <p>
+                      We believe Strengthening this bond is beneficial not only
+                      for the parent and child but also for society as a whole.
+                    </p>
+                    <p>
+                      <strong>Addressing</strong> attachment issues is crucial
+                      for enhancing <strong> mental health </strong> and
+                      fostering healthier relationships, especially
+                      <strong> for single fathers</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="blog-slider__item swiper-slide">
+              <div class="blog-slider__img">
+                <dotlottie-player
+                  src="https://lottie.host/f5c6005d-f924-4589-b7c7-327e9fd0f393/pxg1QYnrHZ.json"
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                ></dotlottie-player>
+              </div>
+              <div class="blog-slider__content">
+                <div class="blog-slider__title">
+                  <p>Every Little Step</p>
+                </div>
+                <div class="blog-slider__text">
+                  <p>
+                    Self Love: We believe understanding the importance of
+                    rebuilding your way of thinking, improving your situation,
+                    and loving yourself makes your family grow.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="blog-slider__item swiper-slide">
+              <div class="blog-slider__img">
+                <dotlottie-player
+                  src="https://lottie.host/2801533d-55d5-44de-9d86-4390b5fcabaf/9AmYKr8eRF.json"
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                ></dotlottie-player>
+              </div>
+              <div class="blog-slider__content">
+                <div class="blog-slider__title">
+                  <p>Explore Possibilities</p>
+                </div>
+                <div class="blog-slider__text">
+                  <p>
+                    Discover a treasure trove of Free eBooks, Engaging Videos,
+                    Audio Guides and Community Wisdom designed to support you on
+                    your parenting journey.
+                  </p>
+                </div>
+                <a class="blog-slider__button" href="#modal-center-2" uk-toggle
+                  >READ MORE</a
+                >
+                <div id="modal-center-2" class="uk-flex-top" uk-modal>
+                  <div
+                    class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+                  >
+                    <button
+                      title="click here"
+                      class="uk-modal-close-default"
+                      type="button"
+                      uk-close
+                    ></button>
+                    <p>
+                      Statistics reveal a troubling trend: young fathers from
+                      <strong>disadvantaged backgrounds </strong> are at a
+                      higher risk of experiencing
+                      <strong>family separation</strong>.
+                    </p>
+                    <p>
+                      This separation exacerbates mental health challenges,
+                      leading to a cycle of instability that affects both the
+                      father and the child.
+                    </p>
+                    <p>
+                      Research shows that these fathers often struggle with
+                      inadequate support systems, contributing to elevated
+                      stress levels and diminished emotional well-being.<br />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="blog-slider__item swiper-slide">
+              <div class="blog-slider__img">
+                <dotlottie-player
+                  src="https://lottie.host/8d8c776a-638f-4b42-83d0-887b12a5177f/4yc92uGcQa.json"
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                ></dotlottie-player>
+              </div>
+              <div class="blog-slider__content">
+                <div class="blog-slider__title">
+                  <p>Our vision</p>
+                </div>
+                <div class="blog-slider__text">
+                  <p>
+                    We envision a world where education, support and therapy are
+                    accessible to all, where every individual has the
+                    opportunity to reach their full potential and work on past
+                    issues.
+                  </p>
+                  <a
+                    class="blog-slider__button"
+                    href="#modal-center-3"
+                    uk-toggle
+                    >Click Me</a
+                  >
+                  <div id="modal-center-3" class="uk-flex-top" uk-modal>
+                    <div
+                      class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+                    >
+                      <button
+                        title="click here"
+                        class="uk-modal-close-default"
+                        type="button"
+                        uk-close
+                      ></button>
+                      <p>
+                        Early attachment experiences shape our internal working
+                        models,which are mental blueprints of ourselves and
+                        others.
+                      </p>
+                      <p>
+                        These <strong> blueprints </strong> influence our
+                        expectations and behaviors in relationships, affecting
+                        everything from romance to parenting. <br />
+                        Secure attachments <strong> boost </strong> our
+                        self-esteem and trust in others, while insecure
+                        attachments can lead to self-doubt and mistrust. <br />
+                        Tackling these attachment issues is key to enhancing
+                        mental health and building healthier
+                        <strong> relationships </strong>, especially for single
+                        fathers navigating the challenges of parenthood.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 6 -->
+            <div class="blog-slider__item swiper-slide">
+              <div class="blog-slider__img">
+                <dotlottie-player
+                  src="https://lottie.host/c77daf71-d35c-4c3c-9e43-10a563447bbb/EScq4AJNNn.json"
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                ></dotlottie-player>
+              </div>
+              <div class="blog-slider__content">
+                <div class="blog-slider__title">
+                  <p>You are Super</p>
+                </div>
+                <div class="blog-slider__text">
+                  <blockquote class="u-align-center u-text u-text-2">
+                    "Embrace your journey, for every step you take alone is a
+                    testament to your strength. You are the hero of your own
+                    story, capable of achieving greatness and soaring to new
+                    heights. Believe in yourself, for you are unstoppable."
+                  </blockquote>
+                </div>
+                <a class="blog-slider__button" href="quicklinks.html" uk-toggle
+                  >Lets go!</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="blog-slider__pagination"></div>
+        </div>
+      </main>
+    </div>
+    <!--End of Main -->
+    <!--console.log Tests -->
+
+    <!-- Scripts -->
+    <script src="assets/js/animation/Animated-Type-Heading-BS5-Animated-Type-Heading.js"></script>
+    <script src="assets/js/responsive-blog-card-slider-01-swiper-bundle.min.js"></script>
+    <script src="assets/js/responsive-blog-card-slider-02-responsive-blog-card-slider.js"></script>
+    <!--Scripts -->
   </body>
 </html>
