@@ -1,0 +1,82 @@
+
+# Flask core packages
+Flask
+Flask-Bcrypt
+Flask-Cors
+Flask-Login
+Flask-Mail
+Flask-Migrate
+Flask-Moment
+Flask-RESTful
+Flask-SQLAlchemy
+Flask-WTF
+Flask-Admin
+Flask-CKEditor
+Flask-Uploads
+Flask-Caching
+Flask-Sitemap
+Flask-Babel
+Flask-Security-Too
+Flask-Gravatar
+Flask-Session
+Flask-Limiter
+Flask-Paginate
+Flask-Principal
+Flask-API
+Flask-Celery-Helper
+Flask-RQ2
+Flask-Mailman
+Flask-Dropzone
+Flask-Talisman
+
+# Additional useful Flask extensions
+Flask-SocketIO
+Flask-Compress
+Flask-HTTPAuth
+Flask-Logging
+Flask-Redis
+
+# Database and Migrations
+SQLAlchemy
+alembic
+dnspython
+mysql-connector-python
+sqlparse
+pytz
+tzdata
+psycopg2-binary  # Added psycopg2-binary for PostgreSQL
+
+# Password hashing and encryption
+bcrypt
+itsdangerous
+
+# Image processing
+Pillow
+image
+
+# Email validation and others
+email-validator
+aniso8601
+
+# Django related packages (if needed)
+Django
+asgiref
+
+# Utility and additional dependencies
+greenlet
+six
+typing_extensions
+Werkzeug
+Jinja2
+Mako
+MarkupSafe
+blinker
+click
+colorama
+idna
+
+# Environment variables management
+python-dotenv
+
+Gunicorn
+
