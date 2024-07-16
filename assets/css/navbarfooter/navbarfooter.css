@@ -1,0 +1,17 @@
+/* Css for the navbar logo and title */
+.navbar-logo {
+  height: 115px; /* Adjust the height as needed */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.navbar-title {
+  color: #ffffff; /* White color for the title */
+  font-size: 1.85rem; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the title bold */
+}
+.nav-link {
+    text-align: center !important;
+    font-weight: bold;  
+}
+
+
