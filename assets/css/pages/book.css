@@ -1,0 +1,184 @@
+.book-body {
+  background: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.u-section-1 {
+  background-image: none;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 100vh;
+}
+
+.u-section-1 .u-text-1 {
+  font-weight: 700;
+  font-size: 6rem;
+  margin: 181px auto 0;
+}
+
+.u-section-1 .u-group-1 {
+  width: 684px;
+  min-height: 255px;
+  height: auto;
+  --radius: 22px;
+  margin: 82px 228px 60px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 20px 17px 16px;
+}
+
+.u-section-1 .u-text-2 {
+  margin: 23px 18px 0;
+}
+
+.u-section-1 .u-text-3 {
+  width: 199px;
+  margin: -15px 226px 0;
+}
+
+.u-section-1 .u-btn-1 {
+  background-image: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  --radius: 8px;
+  margin: 1px 0 0 auto;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-text-1 {
+    font-size: 4.5rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-group-1 {
+    margin-left: 128px;
+    margin-right: 128px;
+    height: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-group-1 {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-1 {
+    font-size: 3.75rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-group-1 {
+    width: 540px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-container-layout-1 {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-2 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-3 {
+    margin-right: 161px;
+    margin-left: 161px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-group-1 {
+    width: 340px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-3 {
+    margin-right: 61px;
+    margin-left: 61px;
+  }
+}
+
+.book-body {
+  animation: fadeInAnimation ease 5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.custom-card {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.5);
+  /*Adjustthevaluesasneeded*/
+  margin-bottom: 40px;
+}
+
+/* Individual Card Background Colors */
+.card-js {
+  background-color: rgba(219, 77, 64, 0.8);
+}
+
+.card-c {
+  background-color: rgba(211, 193, 195, 0.8);
+}
+
+.card-cpp {
+  background-color: rgba(82, 183, 136, 0.8);
+}
+
+.card-python {
+  background-color: rgba(156, 115, 53, 0.8);
+}
+
+.card-java {
+  background-color: rgba(2, 86, 155, 0.8);
+}
+
+.card-flutter {
+  background-color: rgba(240, 201, 135, 0.8);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 767px) {
+  .custom-card {
+    margin-bottom: 20px; /* Add spacing between cards on small screens */
+  }
+}
+.card-img-top {
+  padding-top: 25px;
+  height: 270px; /* Adjust the height as needed */
+  object-fit: contain; /* This ensures the image covers the area without distortion */
+  width: 100%; /* Ensures the image spans the full width of the card */
+}
