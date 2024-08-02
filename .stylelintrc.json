@@ -1,0 +1,12 @@
+{
+    "extends": "stylelint-config-standard",
+    "overrides": [
+      {
+        "files": ["about.css", "home.css", "index.css", "books.css", "quicklinks.css", "contact.css", "mental.css", "spotify.css", "recipe.css", "story.css"],
+        "rules": {
+          // Add specific rules here if needed
+        }
+      }
+    ]
+  }
+  

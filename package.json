@@ -4,36 +4,81 @@
   "description": "base",
   "main": "index.js",
   "directories": {
-    "doc": "docs"
+    "doc": "docs",
+    "test": "test"
   },
   "scripts": {
-    "start": "node index.js",
     "test": "jest"
   },
-  "dependencies": {
-    "jsdom": "^24.0.0"
-  },
   "devDependencies": {
-    "jest": "^29.7.0",
+    "cypress": "^13.13.3",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "jest": "^27.5.1",
+    "jest-cli": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
     "jest-html-reporter": "^3.10.2",
-    "jest-junit-reporter": "^1.1.0"
+    "jest-junit": "^16.0.0",
+    "jest-puppeteer": "^10.1.0",
+    "jest-worker": "^29.7.0",
+    "jsdom": "^24.1.3",
+    "mocha-multi-reporters": "^1.5.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "puppeteer": "^23.1.1",
+    "puppeteer-core": "^23.1.1"
   },
   "jest": {
-    "testResultsProcessor": "./node_modules/jest-junit-reporter",
+    "testResultsProcessor": "jest-junit",
     "reporters": [
       "default",
-      ["jest-html-reporter", {
-        "publicPath": "./html-report",
-        "filename": "report.html",
-        "openReport": true
-      }]
+      [
+        "jest-html-reporter",
+        {
+          "publicPath": "./html-report",
+          "filename": "report.html",
+          "openReport": true
+        }
+      ]
+    ],
+    "clearMocks": true,
+    "cacheDirectory": "jest_cache",
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "identity-obj-proxy"
+    },
+    "roots": [
+      "<rootDir>"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "testRunner": "jest-circus/runner",
+    "preset": "jest-puppeteer",
+    "testTimeout": 30000,
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
     ]
   },
   "author": "the projects",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaymestalabistudent/tahlahbee-institute-project.git"
-  }
+    "url": "git+https://github.com/jaymestalabistudent/tahlahbee-institute-project.git"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.46.1",
+    "playwright-chromium": "^1.46.1",
+    "util": "^0.12.5"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/jaymestalabistudent/tahlahbee-institute-project/issues"
+  },
+  "homepage": "https://github.com/jaymestalabistudent/tahlahbee-institute-project#readme"
 }
-
