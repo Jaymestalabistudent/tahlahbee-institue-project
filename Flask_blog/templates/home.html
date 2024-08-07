@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% if title %}
+    <title>{{ title }} - Tahlahbee Institute</title> <!-- Sets the title of the page to the value of the 'title' variable -->
+    {% else %}
+        <title>Welcome</title> <!-- Sets the title of the page to a default value if 'title' variable is not provided -->
+    {% endif %}
+  </head>
+  {% extends "layout.html" %} <!-- Extends the 'layout.html' template -->
+  {% block content %} <!-- Defines a block named 'content' -->
+      {% for post in posts %} <!-- Loops through each 'post' in the 'posts' list -->
+                <h2>{{ post.author }}</h2> <!-- Displays the author of the post -->
+                <p>{{ post.date_posted }}</p> <!-- Displays the date the post was posted -->
+              <h1>{{ post.title }}</h1> <!-- Displays the title of the post -->
+              <p>{{ post.content }}</p> <!-- Displays the content of the post -->
+      {% endfor %} <!-- Ends the loop -->
+  {% endblock content %} <!-- Ends the 'content' block -->
+</html>
