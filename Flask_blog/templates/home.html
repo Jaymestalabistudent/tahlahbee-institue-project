@@ -3,9 +3,16 @@
     {% extends "layout.html" %} <!-- Extends the 'layout.html' template -->
     {% block content %} <!-- Defines a block named 'content' -->
         {% for post in posts %} <!-- Loops through each 'post' in the 'posts' list -->
-                  <h2>{{ post.author }}</h2> <!-- Displays the author of the post -->
-                  <p>{{ post.date_posted }}</p> <!-- Displays the date the post was posted -->
-                <h1>{{ post.title }}</h1> <!-- Displays the title of the post -->
-                <p>{{ post.content }}</p> <!-- Displays the content of the post -->
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.author }}</a>
+              <small class="text-muted">{{ post.date_posted }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
         {% endfor %} <!-- Ends the loop -->
     {% endblock content %} <!-- Ends the 'content' block -->
+ 
