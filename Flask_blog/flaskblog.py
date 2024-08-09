@@ -1,6 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, flash, redirect
+from forms import RegistrationForm, LoginForm
+from flask import flash
+from email_validator import validate_email, EmailNotValidError
+
 app = Flask(__name__)
 
+# TODO: Change secret key before deploying
+app.config['SECRET_KEY'] = 'a46f003cee2a82c1db483b145bb45717' # temp secret key for the app
 
 posts = [
     {
@@ -41,13 +47,24 @@ def layout():
     return render_template('layout.html', title = 'layout')
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST']) # methods to allow the form to accept post request in browser
 def login():
-    return render_template('login.html', title = 'login Please')
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@tahlahbee.com' and form.password.data == 'institute': # check if the email and password is correct
+            flash('Welcome in!', 'success')
+            return redirect(url_for('home'))  # redirect to home page when login is success full using the function in the flaskblog.py
+        else:
+            flash(f'Nope Unsuccessful. Please check username and password', 'danger') # flash message to send a one time alert to the user using form.username.data to get the username and success is the bootstrap class success
+    return render_template('login.html', title='Login', form=form)
 
-@app.route("/register")
+@app.route("/register" , methods = ['GET', 'POST']) # methods to allow the form to accept post request in browser
 def register():
-    return render_template('register.html',  title = 'Register Please')
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for { form.username.data }!', 'success') # flash message to send a one time alert to the user using form.username.data to get the username and success is the bootstrap class success
+        return redirect(url_for('home')) # redirect to home page when login is success full using the function in the flaskblog.py
+    return render_template('register.html',  title = 'Register Please', form = form)
 
 @app.route("/post")
 def post():

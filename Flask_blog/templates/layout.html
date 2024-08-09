@@ -115,18 +115,18 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/home"
+                <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}"
                   >Home</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" href= "{{url_for('about')}}">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/spotify">Spotify</a>
+                <a class="nav-link" href="{{url_for('spotify')}}">Spotify</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/video">Video</a>
+                <a class="nav-link" href="{{url_for('video')}}">Video</a>
               </li>
             </ul>
           </div>
@@ -135,10 +135,21 @@
     </header>
     <!-- Content section block -->
     <main role="main" class="container">
+      <!-- Validation feedback-->
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8"> <!-- Displays a one time message for a user when correct -->
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">  <!-- Displays a message with a specific category -->
+            {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
           {% block content %}{% endblock %}
         </div>
+    <!-- Validation End -->
         <div class="col-md-4">
           <div class="content-section">
             <h3>Sidebar</h3>
@@ -153,11 +164,8 @@
           </div>
         </div>
       </div>
-    </main>    <!-- Footer section block -->
-    <div id="footer">
-      {% block footer %} &copy; Copyright 2024 by Tahlahbee Institute. {%
-      endblock %}
-    </div>
+    </main>   
+
     <!-- Linking to external JavaScript files -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
