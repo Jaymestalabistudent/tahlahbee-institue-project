@@ -1,5 +1,144 @@
 <!DOCTYPE html>
 {% extends "layout.html" %} <!-- Extends the 'layout.html' template -->
+
 {% block content %} <!-- Defines a block named 'content' -->
-<h1>register</h1>
+
+<main class="main-content">
+    <div class="content-section">
+        <form method="POST" action=""> <!-- Form method and action -->
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group"> <!-- Fieldset for the form -->
+                <legend class="border-bottom mb-4">Join Us</legend> <!-- Legend for the form -->
+                <div class="form-group"> <!-- Form group for the username field -->
+                    {{ form.username.label(class="form-control-label") }} <!-- Label for the username field -->
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }} <!-- Username field with error class -->
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span> <!-- Error message for the username field -->
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control form-control-lg") }} <!-- Username field -->
+                    {% endif %}
+                </div>
+                <div class="form-group">   
+                    {{ form.email.label(class="form-control-label") }} <!-- Label for the email field -->
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }} <!-- Email field with error class -->
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %} <!-- Error message for the email field -->
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }} <!-- Email field -->
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }} <!-- Label for the password field -->
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }} <!-- Password field with error class -->
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %} <!-- Error message for the password field -->
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }} <!-- Password field -->
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }} <!-- Label for the confirm password field -->
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }} <!-- Confirm password field with error class -->
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %} <!-- Error message for the confirm password field -->
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg") }} <!-- Confirm password field -->
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already One Of Us? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a> <!-- Link to the login page -->
+        </small>
+    </div>
+</main>
+
+<!-- Privacy Modal -->
+<div class="modal" id="privacyModal" tabindex="-1" role="dialog" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="privacyModalLabel">Privacy Notice</h5>
+            </div>
+            <div class="modal-body">
+                By continuing to use our site, you agree that we may use your data for advertising purposes. Please review our 
+                <a href="{{ url_for('about') }}">Privacy Policy</a> for more details.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="agreeButton">I Agree</button>
+                <button type="button" class="btn btn-secondary" id="disagreeButton">I Disagree</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to handle the modal and cookies -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        // Function to get a cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        // Check if the cookie exists
+        if (!getCookie('privacyAccepted')) {
+            var privacyModal = new bootstrap.Modal(document.getElementById('privacyModal'), {
+                backdrop: 'static', // Prevent closing by clicking outside
+                keyboard: false     // Prevent closing with the keyboard
+            });
+            privacyModal.show();
+
+            document.getElementById('agreeButton').addEventListener('click', function() {
+                setCookie('privacyAccepted', 'yes', 365); // Cookie lasts for 1 year
+                privacyModal.hide();
+            });
+
+            document.getElementById('disagreeButton').addEventListener('click', function() {
+                window.location.href = "https://www.google.com"; // Redirect to tahlahbee institue
+            });
+        }
+    });
+</script>
+
 {% endblock content %} <!-- Ends the 'content' block -->
+
