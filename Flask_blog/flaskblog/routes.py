@@ -1,13 +1,10 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-from flask import flash
-from email_validator import validate_email, EmailNotValidError
+from flask import render_template, url_for, flash, redirect
+from flaskblog import app
+from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.models import User, Post
 
-app = Flask(__name__)
 
-# TODO: Change secret key before deploying
-app.config['SECRET_KEY'] = 'a46f003cee2a82c1db483b145bb45717' # temp secret key for the app
-
+# create posts
 posts = [
     {
         'author': 'Tahlahbee Institute',
@@ -85,6 +82,3 @@ def spotify():
 @app.route("/video")
 def video():
     return render_template('video.html', title = 'Movies and Series')
-
-if __name__ == '__main__':
-    app.run(debug=True)
