@@ -109,3 +109,8 @@ def spotify():
 @login_required
 def video():
     return render_template('video.html', title = 'Movies and Series')
+
+@app.route("/events")
+@login_required
+def events():
+    return render_template('events.html', title = 'Meet with us')

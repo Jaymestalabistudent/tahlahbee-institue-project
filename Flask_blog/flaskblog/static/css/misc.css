@@ -254,3 +254,7 @@
       display: block;
       width: 50%;
   }
+
+  .event {
+    margin-top: 50px;
+  }
