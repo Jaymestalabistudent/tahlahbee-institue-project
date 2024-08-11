@@ -39,7 +39,10 @@ Once the app context is pushed, you can create the database tables by running:
 
 ```python
 >>> db.create_all()
+>>> db.session.commit()
+
 ```
+
 
 This command will create all tables defined in your models (e.g., `User` and `Post` tables).
 
