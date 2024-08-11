@@ -214,3 +214,50 @@
     font-size: 2.5rem;
   }
 
+  .spotify-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .spotify-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 50px;
+  }
+  
+  .spotify-embed {
+    width: 100%;
+    max-width: 800px;
+    height: 80vh;
+    border: none;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 767px) {
+    .spotify-embed {
+      height: 60vh;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .spotify-embed {
+      height: 50vh;
+    }
+  }
+  
+  img {
+      display: block;
+      width: 50%;
+  }
+
+  .event {
+    margin-top: 50px;
+  }
+  .account-form {
+    border: 1px solid #c0c0c000;
+  }

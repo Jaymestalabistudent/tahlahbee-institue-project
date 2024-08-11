@@ -1,127 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    {% block head %}
-    <!-- Basic HTML metadata and Open Graph metadata for social media sharing -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <meta property="og:title" content="tahlahbee blog" />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="https://github.com/jaymestalabistudent/tahlahbee-institute-project.github.io/blob/frontend-development/assets/img/logo/logo.png"
-    />
-    <meta
-      name="description"
-      content="Tahlahbee Institute is a dedicated self-help website for single fathers, offering a wide range of eBooks, advice courses, and inspirational quotes to support and empower single dads on their journey"
-    />
-    <meta
-      name="keywords"
-      content="blog for single fathers, self-help, eBooks, advice courses, inspirational quotes, single dads, parenting, fatherhood, support for fathers, empowerment for dads"
-    />
-    <meta name="author" content="Tahlahbee Institute" />
-    <meta
-      name="subject"
-      content="Free Self-Help and Advice eBooks for fathers"
-    />
-    <meta name="language" content="EN" />
-    <meta name="rating" content="General" />
-    <meta name="distribution" content="Global" />
-    <meta name="coverage" content="Worldwide" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="expires" content="never" />
-    <meta name="resource-type" content="document" />
-    <meta name="audience" content="all" />
-    <meta name="copyright" content="© 2024 OrchidOs. All rights reserved." />
-    <meta name="category" content="Blog site" />
-    <meta name="designer" content="the projects" />
-    <!-- Linking to external stylesheets -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="https://kit.fontawesome.com/afc3937dbc.js" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
-    />
-    {% if title %}
-    <title>{{ title }} - tahlahbee-institute</title>
-    {% else %}
-    <title>home</title>
-    {% endif %} {% endblock %}
-  </head>
-  <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-          <img
-            src="../assets/img/logo/logo.png"
-            alt="logo"
-            class="navbar-logo"
-          />
-          <span class="navbar-title ms-2 tracking-in-expand"
-            >Tahlahbee Institute</span
-          >
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="spotify.html"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../quicklinks.html">Back</a>
-            </li>
-          </ul>
+{% extends "layoutbase.html" %} <!-- Extends the 'layout.html' template -->
+{% block content %} <!-- Defines a block named 'content' -->
+
+<section>
+</div>
+<div id="about">
+<div class="container">
+  <h1 class="text-center aboutHeading">About Tahlahbee</h1>
+  <p class="aboutPG text-center">Hi! there im Tahlahbee I am a junior Developer please take a look at my other projects and work <strong>Enjoy!</strong> </p>
+</div>
+</div>
+<!--Projects Section - Add your websites to the cards - You can add more as a Bootstrap Deck-->
+<div id="projects">
+<div class="container">
+  <h1 class="text-center">My Projects</h1>
+  <div class="row pt-5 m-auto" id="projectCards">
+    <div class="col-md-6 col-lg-4 pb-3">
+      <div class="card card-custom bg-white border-white border-0">
+        <!--Enter Project Logo/Favicon here-->
+        <div class="card-custom-img" id="project1"></div>
+<a href="#" target="_blank" class="grow">
+  <div class="card-custom-avatar">
+    <video class="img-fluid" controls>
+      <source src="{{ url_for('static', filename='img/4rmendz.mp4') }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</a>
+        <div class="card-body" style="overflow-y: auto">
+          <h4 class="card-title">4rmendz advertising</h4>
+            <p class="card-text">4rmendz is a video creative collective that specializes in producing music videos and advertisements. <br>With a team of talented individuals, they bring artistic vision and technical expertise to create visually stunning and engaging content. Whether it's capturing the essence of a song through captivating visuals or crafting compelling narratives for brands, 4rmendz delivers high-quality and impactful videos that leave a lasting impression.</p>
+        </div>
+        <div class="card-footer" style="background: inherit; border-color: inherit;">
+          <a href="mailto:tahlahbee.institute@gmail.com" class="btn btn-outline-primary">Contact Us</a>
         </div>
       </div>
-    </nav>
-    <!-- Heading block -->
-    <div id="heading">
-      {% block header %}
-      <h1>Home</h1>
-      {% endblock %}
     </div>
-    <!-- Main section block -->
-
-    <div id="content">{% block content %}    <div class="spotify-container">
-      <iframe
-        title="spotify"
-        class="spotify-embed"
-        src="https://open.spotify.com/embed/episode/2pxdMJSi6l0d0K9DHms7lw?utm_source=generator"
-        frameborder="0"
-        allow="encrypted-media"
-      ></iframe>
-    </div>{% endblock %}</div>
-
-    <!-- Footer section block -->
-    <div id="footer">
-      {% block footer %} &copy; Copyright 2024 by Tahlahbee Institute. {%
-      endblock %}
+    <div class="col-md-6 col-lg-4 pb-3">
+      <div class="card card-custom bg-white border-white border-0">
+        <!--Enter Project here-->
+        <div class="card-custom-img" id="project2"></div>
+        <a href="#" target="_blank" class="grow">
+          <div class="card-custom-avatar">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/fromdaddy.png') }}" alt="from daddy" />
+          </div>
+        </a>
+        <div class="card-body" style="overflow-y: auto">
+          <h4 class="card-title">From daddy clothing</h4>
+          <p class="card-text">From Daddy helps incarcerated fathers stay connected with their children by enabling them to design and purchase personalized clothing, <br>fostering emotional bonds and support even while in prison.</p>
+        </div>
+        <div class="card-footer" style="background: inherit; border-color: inherit;">
+          <a href="mailto:tahlahbee.institute@gmail.com" class="btn btn-outline-primary">Contact Us</a>
+        </div>
+      </div>
     </div>
-    <!-- Linking to external JavaScript files -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
+    <div class="col-md-6 col-lg-4 pb-3">
+      <div class="card card-custom bg-white border-white border-0">
+        <!--Enter Project here-->
+        <div class="card-custom-img" id="portfolio"></div>
+        <a href="#">
+          <div class="card-custom-avatar">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/orchidos.png') }}" alt="orchidos" />
+          </div>
+        </a>
+        <div class="card-body" style="overflow-y: auto">
+          <h4 class="card-title">OrchidOs Custom Rom</h4>
+          <p class="card-text">OrchidOs is a custom ROM that offers a high level of customization and freedom for Android users.<br> With OrchidOs, you can personalize your device's appearance, optimize performance, and access advanced features not available in the stock Android operating system. It provides a seamless and user-friendly experience, allowing you to tailor your device to your preferences and enhance your overall Android experience.</p>
+        </div>
+        <div class="card-footer" style="background: inherit; border-color: inherit;">
+          <a href="https://jaymestalabistudent.github.io/OrchidOs/info.html" class="btn btn-outline-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<!--Very Basic footer section - TODO : Adding Social Media links here would be ideal-->
+<footer class="footer">
+<div class="container text-center">
+  <span class="footer-text">Copyright <strong>©OrchidOs</strong>| All Rights Reserved</span>
+</div>
+</footer>
+{% endblock content %} <!-- Ends the 'content' block -->
