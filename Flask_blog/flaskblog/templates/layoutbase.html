@@ -87,7 +87,7 @@
     <!-- End of Preloader-->
 
     <!-- Header section block -->
-    {% include 'navbar.html' %}
+    {% include 'navbarbase.html' %}
 
     <!-- Content section block -->
     <main role="main" class="container">
@@ -106,23 +106,9 @@
           {% block content %}{% endblock %}
         </div>
     <!-- Validation End -->
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Sidebar</h3>
-            <p class="text-muted">Here you can find all the things you need.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light"><a  href="{{ url_for('tahlahbee') }}">Dev Info</a>
-                </li>
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
+  
     </main>
-
+    <!-- End of Content-->
     <!-- Linking to external JavaScript files -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
