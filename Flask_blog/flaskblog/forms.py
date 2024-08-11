@@ -1,35 +1,56 @@
-from flask_wtf import FlaskForm # import the flask form class
-from wtforms import StringField, PasswordField, SubmitField, BooleanField   # import the string field, password field, submit field and boolean field
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError    # import the data required, length, email, equal to and validation error
-from flaskblog.models import User # import the user model from the models.py file
+from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired # import the file field
+from flask_login import current_user # import the current user
+from wtforms import StringField, PasswordField, SubmitField, BooleanField # import the string field, password field, submit field and boolean field
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError # import the validators
+from flaskblog.models import User # import the user model
 
-# define the registration form
-class RegistrationForm(FlaskForm):  # create a class called registration form that inherits from the flask form class
-    username = StringField('Username',  # create a string field called username
-                        validators=[DataRequired(), Length(min=2, max=20)]) # set the validators for the username field
+ # create a registration form
+class RegistrationForm(FlaskForm):
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=2, max=20)]) # create a username field
     email = StringField('Email',
-                        validators=[DataRequired(), Email()]) # set the validators for the email field
-    password = PasswordField('Password', validators=[DataRequired()]) # set the validators for the password field
+                        validators=[DataRequired(), Email()])    # create an email field
+    password = PasswordField('Password', validators=[DataRequired()]) # create a password field
     confirm_password = PasswordField('Confirm Password',
-                                    validators=[DataRequired(), EqualTo('password')]) # set the validators for the confirm password field
-    submit = SubmitField('Sign Up') # set the validators for the submit field
+                                     validators=[DataRequired(), EqualTo('password')]) # create a confirm password field
+    submit = SubmitField('Sign Up')
 
-
-# validate the username and email fields in  the login form
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
+        user = User.query.filter_by(username=username.data).first() # check if the username already exists
         if user:
-            raise ValidationError('Nope that username is taken. Please choose a different one.') # check if the username is already taken
+            raise ValidationError('That username is taken. Please choose a different one.') # if the username already exists, raise an error
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        user = User.query.filter_by(email=email.data).first() # check if the email already exists
         if user:
-            raise ValidationError('Mmm that email is taken. Please choose a different one.') # check if the email is already taken
+            raise ValidationError('That email is taken. Please choose a different one.') # if the email already exists, raise an error
 
-# define the login form
-class LoginForm(FlaskForm): # create a class called login form that inherits from the flask form class
+
+class LoginForm(FlaskForm):
     email = StringField('Email',
-                        validators=[DataRequired(), Email()]) # set the validators for the email field
-    password = PasswordField('Password', validators=[DataRequired()]) # set the validators for the password field
-    remember = BooleanField('Remember Me') # set the validators for the remember me field
-    submit = SubmitField('Login') # set the validators for the submit field
+                        validators=[DataRequired(), Email()]) # create an email field
+    password = PasswordField('Password', validators=[DataRequired()]) # create a password field
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+
+
+class UpdateAccountForm(FlaskForm): # create an update account form
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=2, max=20)]) # create a username field
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])    # create an email field
+    picture = FileField('Profile picture', validators=[FileRequired(), FileAllowed(['jpg', 'png'])]) # create a picture field
+    submit = SubmitField('Update') # create a submit field
+
+    def validate_username(self, username): # validate the username
+        if username.data != current_user.username:
+            user = User.query.filter_by(username=username.data).first() # check if the username already exists
+            if user:
+                raise ValidationError('That username is taken. Please choose a different one.') # if the username already exists, raise an error
+
+    def validate_email(self, email): # validate the email
+        if email.data != current_user.email:
+            user = User.query.filter_by(email=email.data).first()    # check if the email already exists
+            if user:
+                raise ValidationError('That email is taken. Please choose a different one.') # if the email already exists, raise an error
