@@ -108,20 +108,22 @@
     <!-- Validation End -->
         <div class="col-md-4">
           <div class="content-section">
-            <h3>Sidebar</h3>
-            <p class="text-muted">Here you can find all the things you need.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">More</li>
-              </ul>
-            </p>
+            <div id="lottie-animation" style="width: 100%; height: 300px;"></div>
+
           </div>
         </div>
       </div>
-    </main>   
-
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+    <script>
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://lottie.host/523d2d53-45c4-4d8d-b0f2-9c1f467cd3ce/crJFdpNemA.json' // Example Lottie file URL
+        });
+    </script>
     <!-- Linking to external JavaScript files -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

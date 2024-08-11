@@ -1,21 +1,35 @@
-from flask_wtf import FlaskForm # importing FlaskForm from flask_wtf
-from wtforms import StringField, PasswordField, SubmitField, BooleanField # importing StringField, PasswordField, SubmitField, BooleanField from wtforms
-from wtforms.validators import DataRequired, Length, Email, EqualTo # importing DataRequired, Length, Email, EqualTo from wtforms.validators
+from flask_wtf import FlaskForm # import the flask form class
+from wtforms import StringField, PasswordField, SubmitField, BooleanField   # import the string field, password field, submit field and boolean field
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError    # import the data required, length, email, equal to and validation error
+from flaskblog.models import User # import the user model from the models.py file
 
-
-class RegistrationForm(FlaskForm): # creating a class called RegistrationForm by inheriting from FlaskForm
-    username = StringField('Username',
-                            validators=[DataRequired(), Length(min=5, max=20)])  # creating a variable called username and assigning it to StringField this will validate the username
+# define the registration form
+class RegistrationForm(FlaskForm):  # create a class called registration form that inherits from the flask form class
+    username = StringField('Username',  # create a string field called username
+                        validators=[DataRequired(), Length(min=2, max=20)]) # set the validators for the username field
     email = StringField('Email',
-                        validators=[DataRequired(), Email()]) # creating a variable called email and assigning it to StringField this will validate email
-    password = PasswordField('Password', validators=[DataRequired()]) # creating a variable called password and assigning it to PasswordField this will validate password
+                        validators=[DataRequired(), Email()]) # set the validators for the email field
+    password = PasswordField('Password', validators=[DataRequired()]) # set the validators for the password field
     confirm_password = PasswordField('Confirm Password',
-                                    validators=[DataRequired(), EqualTo('password')]) # creating a variable called confirm_password and assigning it to PasswordField this will validate confirm_password if field is equal to the password field
-    submit = SubmitField('Sign Up') # creating a variable called submit and assigning it to SubmitField this will validate the submit button
+                                    validators=[DataRequired(), EqualTo('password')]) # set the validators for the confirm password field
+    submit = SubmitField('Sign Up') # set the validators for the submit field
 
-class LoginForm(FlaskForm): # creating a class called LoginForm by inheriting from FlaskForm
+
+# validate the username and email fields in  the login form
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('Nope that username is taken. Please choose a different one.') # check if the username is already taken
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('Mmm that email is taken. Please choose a different one.') # check if the email is already taken
+
+# define the login form
+class LoginForm(FlaskForm): # create a class called login form that inherits from the flask form class
     email = StringField('Email',
-                        validators=[DataRequired(), Email()]) # creating a variable called email and assigning it to StringField this will validate email
-    password = PasswordField('Password', validators=[DataRequired()]) # creating a variable called password and assigning it to PasswordField this will validate password
-    remember = BooleanField('Remember Me') # creating a variable called remember and assigning it to BooleanField this will validate the remember me checkbox
-    submit = SubmitField('Login') # creating a variable called submit and assigning it to SubmitField this will validate the submit button
+                        validators=[DataRequired(), Email()]) # set the validators for the email field
+    password = PasswordField('Password', validators=[DataRequired()]) # set the validators for the password field
+    remember = BooleanField('Remember Me') # set the validators for the remember me field
+    submit = SubmitField('Login') # set the validators for the submit field
