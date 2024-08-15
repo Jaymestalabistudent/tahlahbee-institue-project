@@ -7,7 +7,8 @@ from flaskblog import app, db, bcrypt # import the app, db, and bcrypt modules
 from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm # import the RegistrationForm, LoginForm, and UpdateAccountForm modules
 from flaskblog.models import User, Post # import the User and Post modules
 from flask_login import login_user, current_user, logout_user, login_required # import the login_user, current_user, logout_user, and login_required modules
-
+from flaskblog.models import Story, Contribution # import the Story and Contribution models
+from flaskblog.forms import ContributionForm
 
 # create a route for pages
 @app.route("/") # create a route for the home page
@@ -182,3 +183,22 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('home'))
+
+
+@app.route('/story-mode', methods=['GET', 'POST']) # create a route for the story mode page
+@login_required
+def story_mode(): # define the function for the story mode page
+    story = Story.query.first()
+    if not story:
+        story = Story(title="The Start of a Great Adventure", description="An ongoing collaborative story.", author=current_user)
+        db.session.add(story)
+        db.session.commit()
+    form = ContributionForm() # create a form for the contribution
+    if form.validate_on_submit():
+        contribution = Contribution(content=form.content.data, author=current_user, story=story)
+        db.session.add(contribution) # add the contribution to the database
+        db.session.commit() # commit the changes
+        flash('Your contribution has been added!', 'success')
+        return redirect(url_for('story_mode')) # redirect to the story mode page
+    contributions = Contribution.query.filter_by(story_id=story.id).order_by(Contribution.date_posted).all()
+    return render_template('story_mode.html', title='Story Mode', story=story, contributions=contributions, form=form) # render the story mode template

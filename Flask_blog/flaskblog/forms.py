@@ -60,3 +60,7 @@ class PostForm(FlaskForm): # create a post form
     title = StringField('Title', validators=[DataRequired()]) # create a title field
     content = TextAreaField('Content', validators=[DataRequired()]) # create a content field
     submit = SubmitField('Post') # create a submit field
+
+class ContributionForm(FlaskForm):
+    content = TextAreaField('Your Contribution', validators=[DataRequired()])
+    submit = SubmitField('Add to Story')
