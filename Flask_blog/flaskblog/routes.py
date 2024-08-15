@@ -2,40 +2,22 @@ import os # import the os module to interact with the operating system
 import secrets # import the secrets module to generate random strings
 from PIL import Image # import the Image module from the PIL library to work with images
 from flask import current_app as app # import the current application
-from flask import render_template, url_for, flash, redirect, request # import the render_template, url_for, flash, redirect, request modules
+from flask import render_template, url_for, flash, redirect, request, abort # import the render_template, url_for, flash, redirect, request modules
 from flaskblog import app, db, bcrypt # import the app, db, and bcrypt modules
-from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm # import the RegistrationForm, LoginForm, and UpdateAccountForm modules
+from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm # import the RegistrationForm, LoginForm, and UpdateAccountForm modules
 from flaskblog.models import User, Post # import the User and Post modules
 from flask_login import login_user, current_user, logout_user, login_required # import the login_user, current_user, logout_user, and login_required modules
-
-# create a list of dictionaries to store the post data test data
-posts = [
-    {
-        'author': 'tahlahbee institute',
-        'title': 'first Post 1',
-        'content': 'First post content',
-        'date_posted': 'August 12, 2024'
-    },
-    {
-        'author': 'tahlahbee broadcast',
-        'title': 'second Post 2',
-        'content': 'Second post content',
-        'date_posted': 'August 11, 2024'
-        },
-    {
-        'author': 'hood news',
-        'title': 'third Post 2',
-        'content': 'Second post content',
-        'date_posted': 'August 01, 2024'
-    }
-]
+from flaskblog.models import Story, Contribution # import the Story and Contribution models
+from flaskblog.forms import ContributionForm
 
 # create a route for pages
 @app.route("/") # create a route for the home page
 @app.route("/home") # create a route for the home page
 @login_required #  login required for security
 def home(): # define the function for the home page
-    return render_template('home.html', posts=posts) # render the home page
+    page = request.args.get('page', 1, type=int) # get the page number
+    post = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3) # get the posts with the given page number
+    return render_template('home.html', posts=post) # render the home page
 
 
 @app.route("/about")
@@ -126,12 +108,6 @@ def account():
 
 
 
-# create a route for the post page
-@app.route("/post")
-@login_required
-def post():
-    return render_template('post.html')
-
 # additional routes
 @app.route("/tahlahbee")
 def tahlahbee():
@@ -156,3 +132,84 @@ def video():
 @login_required
 def events():
     return render_template('events.html', title = 'Meet with us')
+
+# post routes
+@app.route("/post/new", methods=['GET', 'POST']) # create a route for the new post page
+@login_required
+def new_post():
+    form = PostForm() # create a form for the new post
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author=current_user) # create a new post with the form data
+        db.session.add(post) # add the post to the database
+        db.session.commit() # commit the changes
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_post.html', title='New Post',
+                        form=form, legend='New Post') # render the new post template
+
+
+@app.route("/post/<int:post_id>") # create a route for the post page
+def post(post_id):
+    post = Post.query.get_or_404(post_id) # get the post with the given ID or return 404 if not found
+    return render_template('post.html', title=post.title, post=post) # render the post template
+
+
+@app.route("/post/<int:post_id>/update", methods=['GET', 'POST']) # update post
+@login_required
+def update_post(post_id): # update post
+    post = Post.query.get_or_404(post_id) # get the post with the given ID or return 404 if not found
+    if post.author != current_user:
+        abort(403)
+    form = PostForm()
+    if form.validate_on_submit(): # validate the form
+        post.title = form.title.data # update the title
+        post.content = form.content.data # update the content
+        db.session.commit() # commit the changes
+        flash('Your post has been updated!', 'success') # flash a success message
+        return redirect(url_for('post', post_id=post.id))
+    elif request.method == 'GET': # populate the form with the current post dat
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('create_post.html', title='Update Post',
+                        form=form, legend='Update this Post') # render the update post template
+
+
+@app.route("/post/<int:post_id>/delete", methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your post has been deleted!', 'success')
+    return redirect(url_for('home'))
+
+
+@app.route('/story-mode', methods=['GET', 'POST']) # create a route for the story mode page
+@login_required
+def story_mode(): # define the function for the story mode page
+    story = Story.query.first()
+    if not story:
+        story = Story(title="The Start of a Great Adventure", description="An ongoing collaborative story.", author=current_user)
+        db.session.add(story)
+        db.session.commit()
+    form = ContributionForm() # create a form for the contribution
+    if form.validate_on_submit():
+        contribution = Contribution(content=form.content.data, author=current_user, story=story)
+        db.session.add(contribution) # add the contribution to the database
+        db.session.commit() # commit the changes
+        flash('Your contribution has been added!', 'success')
+        return redirect(url_for('story_mode')) # redirect to the story mode page
+    contributions = Contribution.query.filter_by(story_id=story.id).order_by(Contribution.date_posted).all()
+    return render_template('story_mode.html', title='Story Mode', story=story, contributions=contributions, form=form) # render the story mode template
+
+
+@app.route("/user/<string:username>") # create a route for the user page of their posts
+def user_posts(username): # define the function for the user page
+    page = request.args.get('page', 1, type=int) # get the page number
+    user = User.query.filter_by(username=username).first_or_404() # get the user or return 404 if not found
+    posts = Post.query.filter_by(author=user)\
+        .order_by(Post.date_posted.desc())\
+        .paginate(page=page, per_page=5)
+    return render_template('user_posts.html', posts=posts, user=user, title='User Posts') # render the user posts template

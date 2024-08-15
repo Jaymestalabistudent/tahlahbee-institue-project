@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1>{{ story.title }}</h1>
+  <p>{{ story.description }}</p>
+
+  <div class="story-contributions">
+    {% for contribution in contributions %}
+      <p><strong>{{ contribution.author.username }}:</strong> {{ contribution.content }}</p>
+    {% endfor %}
+  </div>
+
+  <h2>Add to the Story</h2>
+  <form method="POST" action="{{ url_for('story_mode') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.content.label(class="form-control-label") }}
+      {{ form.content(class="form-control form-control-lg") }}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+{% endblock %}

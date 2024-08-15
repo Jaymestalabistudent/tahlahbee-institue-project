@@ -71,7 +71,7 @@
     <title>{{ title }} - Tahlahbee Institute</title>
     <!-- Sets the title of the page to the value of the 'title' variable -->
     {% else %}
-    <title>Welcome</title>
+    <title>Posts</title>
     <!-- Sets the title of the page to a default value if 'title' variable is not provided -->
     {% endif %}
   </head>
@@ -87,42 +87,34 @@
     <!-- End of Preloader-->
 
     <!-- Header section block -->
-    {% include 'navbar.html' %}
+    {% include 'navbarposts.html' %}
 
     <!-- Content section block -->
     <main role="main" class="container">
       <!-- Validation feedback-->
       <div class="row">
         <div class="col-md-8"> <!-- Displays a one time message for a user when correct -->
-          {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-          {% for category, message in messages %}
-          <div class="alert alert-{{ category }}">  <!-- Displays a message with a specific category -->
-            {{ message }}
-          </div>
-          {% endfor %}
-          {% endif %}
-          {% endwith %}
           {% block content %}{% endblock %}
         </div>
     <!-- Validation End -->
         <div class="col-md-4">
           <div class="content-section">
-            <h4>More features</h4>
-            <p class="text-muted">Here you can find all the things you need. Enjoy!</p>
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light"><a  href="{{ url_for('story_mode') }}">Our Story</a>
-                  <li class="list-group-item list-group-item-light"><a  href="{{ url_for('spotify') }}">Spotify</a>
-                  <li class="list-group-item list-group-item-light"><a  href="{{ url_for('events') }}">Events</a>
-                  <li class="list-group-item list-group-item-light"><a  href="{{ url_for('tahlahbee') }}">Dev Info</a>
-                </li>
-              </ul>
-            </p>
+            <div id="lottie-animation" style="width: 100%; height: 300px;"></div>
+
           </div>
         </div>
       </div>
     </main>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+    <script>
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://lottie.host/13c4251c-5479-4ca8-a97c-66715e68e646/J075GM4Qu9.json' // Example Lottie file URL
+        });
+    </script>
     <!-- Linking to external JavaScript files -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
