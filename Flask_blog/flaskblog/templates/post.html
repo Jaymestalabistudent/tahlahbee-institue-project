@@ -1,5 +1,43 @@
-<!DOCTYPE html>
-{% extends "layoutuser.html" %} <!-- Extends the 'layout.html' template -->
+{% extends "layoutpost.html" %} <!-- Extends the 'layout.html' template -->
 {% block content %} <!-- Defines a block named 'content' -->
-<h1>post page</h1>
-{% endblock content %} <!-- Ends the 'content' block -->
+<main class="main-content">
+  <article class="media content-section">  
+    <img class="rounded-circle article-img" src="{{ url_for('static', filename='img/profile_pics/' + post.author.image_file) }}"> <!-- Profile picture of the author -->
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ post.author.username }}</a> <!-- Username of the author -->
+        <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small> <!-- Date the post was posted -->
+        {% if post.author == current_user %} <!-- If the author of the post is the current user -->
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_post', post_id=post.id) }}">Update</a> <!-- Update button -->
+            <button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+          </div>
+        {% endif %}
+      </div>
+<!-- post -->
+      <h2 class="article-title">{{ post.title }}</h2> <!-- Title of the post -->
+      <p class="article-content">{{ post.content }}</p> <!-- Content of the post -->
+    </div>
+  </article>
+  <!-- Modal -->
+<!-- Modal -->
+<!-- delete post -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5> <!-- delete post conformation -->
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <!-- Close button -->
+        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST"> <!-- Form to delete the post -->
+          <input class="btn btn-danger" type="submit" value="Delete"> <!-- Delete button -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+{% endblock content %}

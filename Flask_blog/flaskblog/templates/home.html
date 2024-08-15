@@ -1,18 +1,19 @@
 
     <!DOCTYPE html>
     {% extends "layout.html" %} <!-- Extends the 'layout.html' template -->
+    <!-- homepage -->
     {% block content %} <!-- Defines a block named 'content' -->
         {% for post in posts %} <!-- Loops through each 'post' in the 'posts' list -->
         <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ url_for('static', filename='img/profile_pics/' + post.author.image_file) }}"> <!-- Profile picture of the author -->
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted }}</small>
+              <a class="mr-2" href="#">{{ post.author.username }}</a>
+              <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
-            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+            <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2> <!-- Title of the post -->
+            <p class="article-content">{{ post.content }}</p> <!-- Content of the post -->
           </div>
         </article>
         {% endfor %} <!-- Ends the loop -->
     {% endblock content %} <!-- Ends the 'content' block -->
- 
