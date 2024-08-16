@@ -5,7 +5,7 @@
     <img class="rounded-circle article-img" src="{{ url_for('static', filename='img/profile_pics/' + post.author.image_file) }}"> <!-- Profile picture of the author -->
     <div class="media-body">
       <div class="article-metadata">
-        <a class="mr-2" href="#">{{ post.author.username }}</a> <!-- Username of the author -->
+        <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
         <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small> <!-- Date the post was posted -->
         {% if post.author == current_user %} <!-- If the author of the post is the current user -->
           <div>

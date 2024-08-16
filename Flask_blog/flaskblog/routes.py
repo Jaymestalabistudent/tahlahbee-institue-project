@@ -15,7 +15,8 @@ from flaskblog.forms import ContributionForm
 @app.route("/home") # create a route for the home page
 @login_required #  login required for security
 def home(): # define the function for the home page
-    post = Post.query.all() # get all posts from the database this is the connector between new post and the database and the home page
+    page = request.args.get('page', 1, type=int) # get the page number
+    post = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3) # get the posts with the given page number
     return render_template('home.html', posts=post) # render the home page
 
 
@@ -202,3 +203,13 @@ def story_mode(): # define the function for the story mode page
         return redirect(url_for('story_mode')) # redirect to the story mode page
     contributions = Contribution.query.filter_by(story_id=story.id).order_by(Contribution.date_posted).all()
     return render_template('story_mode.html', title='Story Mode', story=story, contributions=contributions, form=form) # render the story mode template
+
+
+@app.route("/user/<string:username>") # create a route for the user page of their posts
+def user_posts(username): # define the function for the user page
+    page = request.args.get('page', 1, type=int) # get the page number
+    user = User.query.filter_by(username=username).first_or_404() # get the user or return 404 if not found
+    posts = Post.query.filter_by(author=user)\
+        .order_by(Post.date_posted.desc())\
+        .paginate(page=page, per_page=5)
+    return render_template('user_posts.html', posts=posts, user=user, title='User Posts') # render the user posts template
