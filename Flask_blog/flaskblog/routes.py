@@ -16,13 +16,15 @@ from flask_mail import Message # import the Message module from the flask_mail m
 @app.route("/home") # create a route for the home page
 @login_required #  login required for security
 def home(): # define the function for the home page
-    page = request.args.get('page', 1, type=int) # get the page number
+    try:
+        page = int(request.args.get('page', 1))  # Get page and ensure it's an integer
+    except ValueError:
+        page = 1  # Default to page 1 if conversion fails
     post = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3) # get the posts with the given page number
     return render_template('home.html', posts=post) # render the home page
 
 
 @app.route("/about")
-@login_required
 def about():
     return render_template('about.html', title='About')
 

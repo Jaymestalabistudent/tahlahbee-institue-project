@@ -1,5 +1,5 @@
 from datetime import datetime # This is used to get the current date and time
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer # This is used to create a token
+from itsdangerous import URLSafeTimedSerializer as Serializer
 from flaskblog import db, login_manager, app # This is used to create the database
 from flask_login import UserMixin # This is used to create the login manager
 
