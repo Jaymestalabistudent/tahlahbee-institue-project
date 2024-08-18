@@ -1,5 +1,85 @@
-<!DOCTYPE html>
-{% extends "layout.html" %} <!-- Extends the 'layout.html' template -->
-{% block content %} <!-- Defines a block named 'content' -->
-<h1>about page </h1>
-{% endblock content %} <!-- Ends the 'content' block -->
+<!DOCTYPE html> {% extends "layoutuser.html" %}
+<!-- Extends the 'layout.html' template -->
+{% block content %}
+<!-- Defines a block named 'content' -->
+<div class="container mt-5">
+  <h3>Welcome to our SMALL print page</h3>
+  <p>All the Our info in one Place, read below for our Privacy policy and other information</p>
+
+  <div class="alert alert-info" role="alert">
+    <strong>GDPR Compliance:</strong> This website uses cookies to enhance your
+    experience. The data collected is solely for research and study purposes. We
+    are committed to protecting your privacy and ensuring compliance with the
+    General Data Protection Regulation (GDPR) as well as the Data Protection Act
+    2018.
+  </div>
+  <span><!-- return to register page -->
+    <a
+  name=""
+  id=""
+  class="btn btn-primary"
+  href="{{url_for('register')}}"
+  role="button"
+  >Return to Register Page</a
+></span>
+<br>
+<br>
+  <div class="alert alert-warning" role="alert">
+    <strong>Important Disclaimer:</strong> The blog content on this site is not
+    moderated. This means that the opinions expressed in blog posts are those of
+    the authors and do not necessarily reflect the views of the site
+    administrators. Please be mindful when engaging with the content.
+  </div>
+
+  <div class="alert alert-danger" role="alert">
+    <h3 class="card-title">Community Guidelines</h3>
+    <p class="card-text">
+        Our company is dedicated to creating a safe and welcoming environment for all users. To ensure that our platform remains a positive space, we have established the following rules:
+    </p>
+    <ul class="card-text">
+        <li><strong>No Abusive Language:</strong> We do not tolerate any form of abusive, offensive, or hateful language. Respectful communication is mandatory at all times.</li>
+        <li><strong>Age-Appropriate Content:</strong> All content shared on our platform must be appropriate for a general audience. Content intended for adults or that is inappropriate for children is strictly prohibited.</li>
+        <li><strong>No Sexual Content:</strong> Any content that is sexual in nature, including explicit images, videos, or discussions, is not allowed. This platform is intended to be a safe space for users of all ages.</li>
+    </ul>
+    <p class="card-text">
+        We reserve the right to remove any content that violates these guidelines and to take further action against users who do not comply. Thank you for helping us maintain a positive and respectful community.
+    </p>
+</div>
+  <div class="alert alert-secondary" role="alert">
+    <strong>External Links Notice:</strong> Our website contains links to
+    external sites. We are not responsible for the content or privacy practices
+    of these external websites. We encourage you to review the privacy policies
+    of any site you visit.
+  </div>
+  <div class="alert alert-secondary" role="alert">
+
+  <h2>UK Digital Laws</h2>
+  <p>
+    Under UK law, including the Data Protection Act 2018 and the Privacy and
+    Electronic Communications Regulations (PECR), websites must obtain consent
+    from users to store or retrieve any information on a computer, smartphone,
+    or tablet. This includes cookies used for tracking user behavior.
+  </p>
+  <p>
+    As a user, you have the right to be informed about how your data is
+    collected and used. You also have the right to access your data, request
+    corrections, and demand the deletion of your data. If you have any concerns
+    about your data privacy, you can contact us directly or report concerns to
+    the Information Commissioner's Office (ICO) in the UK.
+  </p>
+</div>
+</div>
+<br>
+ <!-- email contact us-->
+    <a
+    name=""
+    id=""
+    class="btn btn-primary"
+    href="mailto:tahlahbee.institute@gmail.com"
+    role="button"
+    >Contact Us through Email</a
+  >
+  <br>
+  <br>
+{% endblock content %}
+<!-- Ends the 'content' block -->

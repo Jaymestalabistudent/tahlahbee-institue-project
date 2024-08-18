@@ -1,27 +1,30 @@
+
 import os # import the os module to interact with the operating system
 import secrets # import the secrets module to generate random strings
 from PIL import Image # import the Image module from the PIL library to work with images
 from flask import current_app as app # import the current application
 from flask import render_template, url_for, flash, redirect, request, abort # import the render_template, url_for, flash, redirect, request modules
-from flaskblog import app, db, bcrypt # import the app, db, and bcrypt modules
-from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm # import the RegistrationForm, LoginForm, and UpdateAccountForm modules
-from flaskblog.models import User, Post # import the User and Post modules
+from flaskblog import app, db, bcrypt, Mail # import the app, db, bcrypt and  mail modules
+from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, ContributionForm , RequestResetForm, ResetPasswordForm # import the RegistrationForm, LoginForm, and UpdateAccountForm  ContributionForm, RequestResetForm and ResetPasswordForm modules
+from flaskblog.models import User, Post, Story, Contribution # import the User,Post, story and Contribution models
 from flask_login import login_user, current_user, logout_user, login_required # import the login_user, current_user, logout_user, and login_required modules
-from flaskblog.models import Story, Contribution # import the Story and Contribution models
-from flaskblog.forms import ContributionForm
+from flask_mail import Message # import the Message module from the flask_mail module
+
 
 # create a route for pages
 @app.route("/") # create a route for the home page
 @app.route("/home") # create a route for the home page
 @login_required #  login required for security
 def home(): # define the function for the home page
-    page = request.args.get('page', 1, type=int) # get the page number
+    try:
+        page = int(request.args.get('page', 1))  # Get page and ensure it's an integer
+    except ValueError:
+        page = 1  # Default to page 1 if conversion fails
     post = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3) # get the posts with the given page number
     return render_template('home.html', posts=post) # render the home page
 
 
 @app.route("/about")
-@login_required
 def about():
     return render_template('about.html', title='About')
 
@@ -213,3 +216,46 @@ def user_posts(username): # define the function for the user page
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_posts.html', posts=posts, user=user, title='User Posts') # render the user posts template
+
+
+# reset password
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request',
+                sender='tahlahbee.institute@gmail.com',
+                recipients=[user.email])
+    msg.body = render_template('reset_password.txt', token=token)
+    msg.html = render_template('reset_password.html', token=token)
+    Mail.send(msg)
+
+# reset password route for the user
+@app.route("/reset_password", methods=['GET', 'POST']) # create a route for the reset password page
+def reset_request(): # define the function for the reset password page
+    if current_user.is_authenticated:   # check if the user is authenticated
+        return redirect(url_for('home')) # redirect to the home page if the user is already authenticated
+    form = RequestResetForm()            # create a form for the reset password
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('An email has been sent with instructions to reset your password.', 'info')
+        return redirect(url_for('login'))
+    return render_template('reset_request.html', title='Reset Password', form=form)
+
+
+# reset password route for the user
+@app.route("/reset_password/<token>", methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash('That is an invalid or expired token', 'warning')
+        return redirect(url_for('reset_request'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash('Your password has been updated! You are now able to log in', 'success')
+        return redirect(url_for('login'))
+    return render_template('reset_token.html', title='Reset Password', form=form)
