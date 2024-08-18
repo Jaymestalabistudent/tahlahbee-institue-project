@@ -64,3 +64,22 @@ class PostForm(FlaskForm): # create a post form
 class ContributionForm(FlaskForm):
     content = TextAreaField('Your Contribution', validators=[DataRequired()])
     submit = SubmitField('Add to Story')
+
+
+# create a request reset form
+class RequestResetForm(FlaskForm): # create a request reset form
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset') # create a submit field
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('Request Sent. Please check your email. or try again later.')
+
+# create a reset password form
+class ResetPasswordForm(FlaskForm): # create a reset password form
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password',
+                                    validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password') # create a submit field
