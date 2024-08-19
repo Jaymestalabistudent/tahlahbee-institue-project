@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm  # import the flask form
 from flask_wtf.file import FileField, FileAllowed, FileRequired # import the file field
 from flask_login import current_user # import the current user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField # import the string field, password field, submit field and booleanfield textarea field
+from wtforms import StringField, PasswordField, SubmitField, BooleanField # import the string field, password field, submit field and booleanfield textarea field
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError # import the validators
 from flaskblog.models import User # import the user model
 
@@ -54,17 +54,6 @@ class UpdateAccountForm(FlaskForm): # create an update account form
             user = User.query.filter_by(email=email.data).first()    # check if the email already exists
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.') # if the email already exists, raise an error
-
-# create a post form to update and delete posts
-class PostForm(FlaskForm): # create a post form
-    title = StringField('Title', validators=[DataRequired()]) # create a title field
-    content = TextAreaField('Content', validators=[DataRequired()]) # create a content field
-    submit = SubmitField('Post') # create a submit field
-
-class ContributionForm(FlaskForm):
-    content = TextAreaField('Your Contribution', validators=[DataRequired()])
-    submit = SubmitField('Add to Story')
-
 
 # create a request reset form
 class RequestResetForm(FlaskForm): # create a request reset form

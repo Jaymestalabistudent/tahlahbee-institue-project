@@ -11,7 +11,7 @@
   </div>
 
   <h2>Add to the Story</h2>
-  <form method="POST" action="{{ url_for('story_mode') }}">
+  <form method="POST" action="{{ url_for('posts.story_mode') }}">
     {{ form.hidden_tag() }}
     <div class="form-group">
       {{ form.content.label(class="form-control-label") }}
