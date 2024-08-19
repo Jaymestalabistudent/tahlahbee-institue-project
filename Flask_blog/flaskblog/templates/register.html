@@ -70,7 +70,7 @@
     </div>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Already One Of Us? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a> <!-- Link to the login page -->
+            Already One Of Us? <a class="ml-2" href="{{ url_for('users.login') }}">Sign In</a> <!-- Link to the login page -->
         </small>
     </div>
 </main>
@@ -84,7 +84,7 @@
             </div>
             <div class="modal-body">
                 By continuing to use our site, you agree that we may use your data for advertising purposes. Please review our 
-                <a href="{{ url_for('about') }}">Privacy Policy</a> for more details.
+                <a href="{{ url_for('main.about') }}">Privacy Policy</a> for more details.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="agreeButton">I Agree</button>
