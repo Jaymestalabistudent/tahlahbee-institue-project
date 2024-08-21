@@ -5,11 +5,13 @@ from flask_bcrypt import Bcrypt # import the bcrypt app
 from flask_login import LoginManager # import the login manager
 from flask_mail import Mail # import the mail app
 from flaskblog.config import Config # import the config
+from flask_migrate import Migrate
 from dotenv import load_dotenv
 load_dotenv()  # Loads variables from .env file into environment
 # create the flask app object
 # configure database 
 db = SQLAlchemy() # create the database
+migrate = Migrate()
 bcrypt = Bcrypt() # create the bcrypt app
 login_manager = LoginManager() # create the login manager
 login_manager.login_view = 'users.login' # set the login view
@@ -25,6 +27,7 @@ def create_app(config_class=Config):
     app.config.from_object(Config)
 # initialize the database, bcrypt, login manager, and mail app
     db.init_app(app) # initialize the database
+    migrate.init_app(app, db)
     bcrypt.init_app(app) # initialize the bcrypt app
     login_manager.init_app(app) # initialize the login manager
     Mail.init_app(app) # initialize the mail app
