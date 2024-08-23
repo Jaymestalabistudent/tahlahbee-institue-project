@@ -1,21 +1,21 @@
 import os
-from flask import Flask # import the flask app
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy # import the database
-from flask_bcrypt import Bcrypt # import the bcrypt app
-from flask_login import LoginManager # import the login manager
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 from flask_mail import Mail # import the mail app
 from flaskblog.config import Config # import the config
 from flask_migrate import Migrate
 from dotenv import load_dotenv
-load_dotenv()  # Loads variables from .env file into environment
+load_dotenv()  # variables from .env file
 # create the flask app object
-# configure database 
-db = SQLAlchemy() # create the database
+# configure database
+db = SQLAlchemy() # create the database object for testing
 migrate = Migrate()
-bcrypt = Bcrypt() # create the bcrypt app
+bcrypt = Bcrypt()
 login_manager = LoginManager() # create the login manager
-login_manager.login_view = 'users.login' # set the login view
-login_manager.login_message_category = 'info' # set the login message category
+login_manager.login_view = 'users.login' # set the login view to users
+login_manager.login_message_category = 'info'
 
 
 # create the mail app
@@ -31,6 +31,7 @@ def create_app(config_class=Config):
     bcrypt.init_app(app) # initialize the bcrypt app
     login_manager.init_app(app) # initialize the login manager
     Mail.init_app(app) # initialize the mail app
+
 # import the routes
     from flaskblog.users.routes import users
     from flaskblog.posts.routes import posts
@@ -43,7 +44,7 @@ def create_app(config_class=Config):
     app.register_blueprint(errors)
 
 # add headers to prevent caching of the website so it doesn't refresh the page or go back after logout or login
-    @app.after_request # add headers to prevent caching of the website so it doesn't refresh the page or go back after logout or login
+    @app.after_request
     def add_header(response):
         response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
         response.headers['Pragma'] = 'no-cache'

@@ -77,3 +77,6 @@ idna
 
 # Environment variables management
 python-dotenv
+
+Gunicorn
+

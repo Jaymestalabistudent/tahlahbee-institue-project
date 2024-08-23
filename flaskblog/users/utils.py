@@ -1,8 +1,8 @@
 
-import os # import the os module to interact with the operating system
+import os
 import secrets # import the secrets module to generate random strings
 from PIL import Image # import the Image module from the PIL library to work with images
-from flask import current_app as app # import the current application
+from flask import current_app as app
 
 # save  picture
 def save_picture(form_picture):

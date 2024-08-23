@@ -1,14 +1,14 @@
-from datetime import datetime # This is the datetime module from the Python standard library
-from itsdangerous import URLSafeTimedSerializer as Serializer # This is the URLSafeTimedSerializer module from the itsdangerous library in Flask
-from flaskblog import db, login_manager # This is the db, login_manager, and  modules from the flaskblog package
-from flask_login import UserMixin # This is the UserMixin module from the flask_login package
-from flask import current_app # This is the current_app module from the flask package
+from datetime import datetime # datetime module
+from itsdangerous import URLSafeTimedSerializer as Serializer # URLSafeTimedSerializer module from the itsdangerous package
+from flaskblog import db, login_manager
+from flask_login import UserMixin
+from flask import current_app 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-# This is the User class that inherits from the db.Model and UserMixin classes
+# User class that inherits from the db.Model and UserMixin classes
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)  # Add the username column
@@ -18,11 +18,11 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', backref='author', lazy=True)  # Add the posts relationship
     contributions = db.relationship('Contribution', backref='author', lazy=True)  # Add the contributions relationship
 
-# This is the get_reset_token function that generates a reset token for the user
+# get_reset_token function that generates a reset token for the user
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], salt='reset-salt')  # No need for .decode('utf-8')
         return s.dumps({'user_id': self.id}, salt='reset-salt')  # No need for .decode('utf-8')
-# This is the verify_reset_token function that verifies the reset token for the user
+# verify_reset_token function that verifies the reset token for the user
     @staticmethod
     def verify_reset_token(token):
         s = Serializer(current_app.config['SECRET_KEY'], salt='reset-salt')  # No need for .decode('utf-8')
@@ -36,7 +36,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
-
+# Post class that inherits from the db.Model class
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -47,7 +47,7 @@ class Post(db.Model):
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
 
-# This is the Story class that inherits from the db.Model class
+# Story class that inherits from the db.Model class
 class Story(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
