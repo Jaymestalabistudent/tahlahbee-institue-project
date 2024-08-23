@@ -1,3 +1,48 @@
-node_modules
-.venv
-venv
+# Node modules directory
+node_modules/
+
+# Virtual environment directories
+.venv/
+venv/
+
+# Python environment files create own enter in evironment variables of hosting service
+.env
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# SQLite database file (if using SQLite)
+*.sqlite3
+
+# IDE and editor files
+.vscode/
+
+# Logs
+*.log
+
+# Flask instance and config files
+instance/
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+coverage.xml
+*.cover
+
+# Static and media files (if generated during runtime)
+static/
+media/
+
+# docs
+docs/
+
+# SQL backup files testing purposes kept private
+*.sql
+*.dump
+*.backup
+
+# Conda environment files
+.conda/

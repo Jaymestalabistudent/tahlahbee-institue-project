@@ -1,12 +1,12 @@
 import os
 from dotenv import load_dotenv
-load_dotenv()  # Loads variables from .env file into environment
+load_dotenv()  # variables from .env file configure your own locally
 
-# configure database
+# database
 class Config :
     SECRET_KEY = os.environ.get('SECRET_KEY', 'default_secret_key')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'sqlite:///site.db')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False# sqlite database this will be temp until move over to postgresql'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     # configure the mail server
     MAIL_SERVER = 'smtp.gmail.com' # set the mail server
     MAIL_PORT = 587 # set the mail port
